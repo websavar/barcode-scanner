@@ -22,3 +22,26 @@ body {
   color: rgb(var(--foreground-rgb));
 }
 
+
+.inputField {
+  display: flex;
+  color: var(--text);
+  padding: 0.375rem 0.75rem;
+  font-size: 0.875rem;
+  border: 1px solid var(--border);
+  border-radius: 0.225rem;
+}
+
+.inputField:hover, .inputField:focus {
+  background-color: #fbfcfd;
+  outline: none;
+}
+
+label {
+  font-size: 0.775rem;
+  color: var(--text);
+}
+
+video {
+  margin: auto;
+}
