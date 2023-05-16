@@ -37,7 +37,7 @@ body {
   outline: none;
 }
 
-label {
+label, .toggle-label {
   font-size: 0.775rem;
   color: var(--text);
 }

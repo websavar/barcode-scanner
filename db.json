@@ -52,7 +52,7 @@
       "category_id": "10006014",
       "code": "168",
       "description": "Gurke - Alle - Mini",
-      "edeka_article_number": false,
+      "edeka_article_number": true,
       "gross_weight": 1,
       "net_weight": 1,
       "notes": false,
@@ -64,7 +64,8 @@
       "trade_item_unit_descriptor_name": "Basiseinheit",
       "type": "whitelisted_plu",
       "unit_name": "kg",
-      "validation_status": "validated"
+      "validation_status": "validated",
+      "best_before_date": "2023-05-17"
     },
     {
       "id": "169",

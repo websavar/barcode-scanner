@@ -10,7 +10,6 @@ import { getNormalizedCode } from '@/utils';
 
 const ScanProduct = () => {
   const [product, setProduct] = useState<FormValues>();
-  const [gtin, setGtin] = useState<string>('');
   const [isOpen, setIsOpen] = useState<boolean>(false)
 
   const openModal = () => setIsOpen(true);
@@ -22,11 +21,10 @@ const ScanProduct = () => {
 
     setIsOpen(false);
     const code = getNormalizedCode(gtin);
-    setGtin(code);
 
     getProductByCode(code).then((product) => {
       console.log('product ', product);
-      if (!product.length) return;
+      if (!product) return;
 
       if (product?.trade_item_descriptor) {
         product['trade_item_unit_descriptor'] = product['trade_item_descriptor'];
