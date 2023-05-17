@@ -1,7 +1,8 @@
 module.exports = {
   "presets": [
-    ["@babel/preset-env", { "debug": false, "modules": false }],
-    "@babel/preset-react", "next/babel"
+    "@babel/preset-env",
+    "@babel/react",
+    "next/babel"
   ],
   "plugins": [
     "@babel/plugin-transform-modules-commonjs"

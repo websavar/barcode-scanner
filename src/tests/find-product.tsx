@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { getProductByCode } from 'services/api';
-import ScanProduct from '../pages/ScanProduct';
+import ScanProduct from '../pages/find-product';
 
 jest.mock('services/api');
 

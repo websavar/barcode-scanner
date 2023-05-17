@@ -1,3 +1,5 @@
+[Online demo](https://product-barcode-scanner.netlify.app/)
+
 ## OVERVIEW 
   This is a simple web application which can be used to check what food is available at the location of a partner and
   allows the people in warehouses (called "Pickers") to report products in a structured way. They can also create new products. Packaged products have a barcode. External information databases host relevant product data like weight or ingredients data. Most packaged products have the best before date printed on their packaging. Sales teams need this information since a product's value decreases as it approaches its best before date. Most fruit and vegetable products don't have the best before date. Here it's rather a qualitative description of the quality state.

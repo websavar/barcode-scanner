@@ -45,3 +45,25 @@ label, .toggle-label {
 video {
   margin: auto;
 }
+
+header a {
+  font-size: .8rem;
+  color: darkcyan;
+  font-weight: 500;
+  transition: ease-in 100ms;
+}
+
+header a:not(:last-child) {
+  padding-right: 1rem;
+}
+
+@media (min-width: 460px){
+  header a {
+    font-size: 1rem;
+    padding-right: 2rem;
+  }
+}
+
+header a:hover {
+  color: #026363;
+}

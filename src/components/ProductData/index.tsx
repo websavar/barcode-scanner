@@ -3,34 +3,10 @@ import { useForm, Controller } from 'react-hook-form';
 import toast, { Toaster } from 'react-hot-toast';
 import { updateProduct } from 'services/api';
 import { FormValues } from 'types'
+import { productDefaultValues } from '../../constants';
 import Button from '../controls/Button';
 import Toggle from '../controls/Toggle';
 import Input from '../controls/Input';
-
-const productDefaultValues: FormValues = {
-  id: '',
-  amount_multiplier: null,
-  brand: '',
-  categ_id: null,
-  category_id: null,
-  code: null,
-  description: '',
-  edeka_article_number: false,
-  gross_weight: null,
-  net_weight: null,
-  notes: false,
-  packaging: '',
-  related_products: [],
-  requires_best_before_date: false,
-  best_before_date: '',
-  requires_meat_info: false,
-  trade_item_unit_descriptor: '',
-  trade_item_unit_descriptor_name: '',
-  type: '',
-  unit_name: '',
-  validation_status: ''
-};
-
 
 const ProductData: React.FC<{ productData: any }> = ({ productData }) => {
 
@@ -64,23 +40,10 @@ const ProductData: React.FC<{ productData: any }> = ({ productData }) => {
       });
       reset(productDefaultValues);
     });
-
-    // await updateProduct(data);
-    // toast.success('Product updated successfully!', {
-    //   duration: 4000,
-    //   position: 'top-right',
-    //   style: {
-    //     border: '1px solid #e6e6e6',
-    //     padding: '5px 10px',
-    //     color: 'gray',
-    //     fontSize: '13px'
-    //   },
-    // });
-    // reset(productDefaultValues);
   };
 
   return (
-    <div className='container mx-auto items-center input-field p-4 mt-1 mb-5'>
+    <div className='container sm:w-full lg:w-[1024px] xl:w-[1080px] mx-auto items-center input-field p-4 mt-1 mb-5'>
       <Toaster />
       <h1 className='mb-3 text-lg font-semibold text-gray-700'>Product Data</h1>
       {productData && (

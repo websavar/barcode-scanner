@@ -1,7 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import ProductData from '../components/ProductData';
-import { updateProduct } from '../services/api';
+import ProductData from 'components/ProductData';
 
 jest.mock('../services/api');
 

@@ -1,25 +1,18 @@
-import Head from 'next/head'
-import Navbar from 'components/layout/Navbar'
-import ScanProduct from './ScanProduct'
+import type { ReactElement } from 'react';
+import Layout from 'components/layout';
+import type { NextPageWithLayout } from './_app';
+import ScanProduct from './find-product';
 
-export default function HomePage() {
+const Page: NextPageWithLayout = () => {
+  return <ScanProduct />;
+};
 
+Page.getLayout = function getLayout(page: ReactElement) {
   return (
-    <div className=''>
-      <Head>
-        <title>Supply Chain Management</title>
-        <meta name="description" content="Frontend Coding Challenge" />
-        <link rel="icon" href="/favicon.png" />
-      </Head>
+    <Layout>
+      {page}
+    </Layout>
+  );
+};
 
-      <Navbar />
-
-      <main className=''>
-        <ScanProduct />
-      </main>
-
-      <footer className=''>
-      </footer>
-    </div>
-  )
-}
+export default Page;

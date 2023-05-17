@@ -1,5 +1,5 @@
 import { render, screen, fireEvent } from '@testing-library/react';
-import ScanBarcode from '../components/ScanBarcode';
+import ScanBarcode from 'components/ScanBarcode';
 
 describe('ScanBarcode', () => {
   test('calls handleScan with barcode input', () => {

@@ -20,7 +20,7 @@ const ScanBarcode: React.FC<{
 
     return (
       <div className="bg-gray-100">
-        <div className="container mx-auto flex-col items-center p-3">
+        <div className="container sm:w-full lg:w-[1024px] xl:w-[1080px] mx-auto flex-col items-center p-3">
           <p className='text-xs'>Please use the barcode scanner or enter the product barcode manually</p>
           <div className="flex items-center mt-1">
             <input

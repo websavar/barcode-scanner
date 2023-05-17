@@ -12,7 +12,7 @@ export interface ButtonProps {
 
 export interface InputProps {
   name: string
-  inputValue: any
+  inputValue?: any
   register?: UseFormRegister<FormValues> | any
   required?: boolean
   inputType?: string

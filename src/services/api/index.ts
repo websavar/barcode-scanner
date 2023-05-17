@@ -11,3 +11,8 @@ export const updateProduct = async (product: any) => {
   const response = await axios.put(`${API_BASE_URL}/products/${product.id}`, product);
   return response.data;
 };
+
+export const addProduct = async (product: any) => {
+  const response = await axios.post(`${API_BASE_URL}/products`, product);
+  return response.data;
+};
