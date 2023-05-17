@@ -1,4 +1,5 @@
 import { Switch } from "@headlessui/react";
+import { splitUnderscore } from "utils";
 
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(" ");
@@ -20,8 +21,9 @@ const Toggle: React.FC<{
             as="span"
             className="toggle-label first-letter:capitalize"
             passive
+            aria-label={name}
           >
-            {name.split('_').join(' ')}:
+            {splitUnderscore(name)}:
           </Switch.Label>
         </span>
         <Switch

@@ -1,6 +1,6 @@
 import { Fragment, useRef, useContext } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
-import Context from '@/context';
+import Context from 'context';
 import Button from '../controls/Button';
 
 const Modal: React.FC<{ title: string, children: JSX.Element }> = ({ title, children }) => {

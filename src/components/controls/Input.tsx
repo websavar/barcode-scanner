@@ -1,4 +1,5 @@
-import { InputProps } from "@/types";
+import { InputProps } from "types";
+import { splitUnderscore } from "utils";
 
 const Input: React.FC<InputProps> = ({
   name,
@@ -7,8 +8,8 @@ const Input: React.FC<InputProps> = ({
   required = true,
   inputType = 'text'
 }) => (
-  <label className="first-letter:capitalize">
-    {name.split('_').join(' ')} {required && '*'}
+  <label className="first-letter:capitalize" aria-label={name}>
+    {splitUnderscore(name)} {required && '*'}
     <input
       className='inputField w-full'
       type={inputType}

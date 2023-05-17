@@ -1,7 +1,8 @@
 import { useEffect } from 'react';
 import { useForm, Controller } from 'react-hook-form';
-import { updateProduct } from '@/services/api';
-import { FormValues } from '@/types'
+import toast, { Toaster } from 'react-hot-toast';
+import { updateProduct } from 'services/api';
+import { FormValues } from 'types'
 import Button from '../controls/Button';
 import Toggle from '../controls/Toggle';
 import Input from '../controls/Input';
@@ -38,28 +39,49 @@ const ProductData: React.FC<{ productData: any }> = ({ productData }) => {
     control,
     handleSubmit,
     watch,
-    setValue,
     formState,
     reset
   } = useForm<FormValues>({ defaultValues: productDefaultValues });
-  console.log('productData-- ', productData, watch('code'));
 
   useEffect(() => {
     if (productData)
       reset(productData);
   }, [productData]);
 
-  const onSubmit = (data: FormValues) => {
+  const onSubmit = async (data: FormValues) => {
     if (!data || !formState.isDirty) return;
 
-    console.log('submit ', data, formState.isValid);
     updateProduct(data).then(() => {
+      toast.success('Product updated successfully!', {
+        duration: 4000,
+        position: 'top-right',
+        style: {
+          border: '1px solid #e6e6e6',
+          padding: '5px 10px',
+          color: 'gray',
+          fontSize: '13px'
+        },
+      });
       reset(productDefaultValues);
     });
+
+    // await updateProduct(data);
+    // toast.success('Product updated successfully!', {
+    //   duration: 4000,
+    //   position: 'top-right',
+    //   style: {
+    //     border: '1px solid #e6e6e6',
+    //     padding: '5px 10px',
+    //     color: 'gray',
+    //     fontSize: '13px'
+    //   },
+    // });
+    // reset(productDefaultValues);
   };
 
   return (
     <div className='container mx-auto items-center input-field p-4 mt-1 mb-5'>
+      <Toaster />
       <h1 className='mb-3 text-lg font-semibold text-gray-700'>Product Data</h1>
       {productData && (
         <form

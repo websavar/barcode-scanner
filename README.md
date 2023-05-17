@@ -39,3 +39,4 @@ The backend API should have the following endpoints:
   (Run `npm install --legacy-peer-deps` in case of facing error)
 2. Run `npm run backend` or `yarn backend` to run the json database on http://localhost:3001
 3. Run `npm start` to run the project and Open http://localhost:3000
+4. Run `npm test` to run testing

@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import Navbar from '@/components/layout/Navbar'
+import Navbar from 'components/layout/Navbar'
 import ScanProduct from './ScanProduct'
 
 export default function HomePage() {

@@ -6,3 +6,7 @@ export const getNormalizedCode = (code: string) => {
   // NFC: Normalization Form Canonical Composition. it's the default normalization form for JavaScript.
   return NormalizedCode;
 }
+
+export const splitUnderscore = (name: string) => {
+  return name.split('_').join(' ');
+} 

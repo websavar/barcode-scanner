@@ -13,7 +13,7 @@ export interface ButtonProps {
 export interface InputProps {
   name: string
   inputValue: any
-  register: any
+  register?: UseFormRegister<FormValues> | any
   required?: boolean
   inputType?: string
 }
@@ -56,7 +56,7 @@ export interface InputProps {
   value?: string
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
   onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void
-  register?: UseFormRegister<FormValues>
+  register?: UseFormRegister<FormValues> | any
   inputName?: string
   required?: boolean
 }

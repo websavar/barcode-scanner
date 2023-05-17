@@ -1,10 +1,16 @@
 {
   "compilerOptions": {
     "target": "es5",
+    "types": [
+      "jest",
+      "node",
+      "@testing-library/jest-dom"
+    ],
     "lib": [
       "dom",
       "dom.iterable",
-      "esnext"
+      "esnext",
+      "es2015"
     ],
     "allowJs": true,
     "skipLibCheck": true,
@@ -16,19 +22,14 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "incremental": true,
     "plugins": [
       {
         "name": "next"
       }
     ],
-    "baseUrl": ".",
-    "paths": {
-      "@/*": [
-        "./src/*"
-      ]
-    }
+    "baseUrl": "./src"
   },
   "include": [
     "next-env.d.ts",
@@ -36,9 +37,20 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "next",
-    "src/**/*"
+    "src/**/*",
+    "jest.config.js"
   ],
   "exclude": [
     "node_modules"
-  ]
+  ],
+  "typeAcquisition": {
+    "exclude": [
+      "dotenv"
+    ]
+  },
+  "ts-node": {
+    "moduleTypes": {
+      "jest.config.js": "cjs"
+    }
+  }
 }

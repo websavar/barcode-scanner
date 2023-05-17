@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState, useContext } from 'react';
 import Quagga from '@ericblade/quagga2';
-import Context from '@/context';
+import Context from 'context';
 
 type BarcodeScannerProps = {
   onDetected: (code: string) => void;

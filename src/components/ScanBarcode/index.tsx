@@ -1,7 +1,7 @@
-import { useState, useRef, useContext, useEffect } from 'react';
-import Context from '@/context';
+import { useState, useContext } from 'react';
+import Context from 'context';
 import Image from 'next/image';
-import Button from '@/components/controls/Button';
+import Button from 'components/controls/Button';
 
 const ScanBarcode: React.FC<{
   handleScan: (barcode: string) => void,
