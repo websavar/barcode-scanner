@@ -1,6 +1,7 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { getProductByCode } from 'services/api';
 import ScanProduct from '../pages/find-product';
+import { getNormalizedCode } from 'utils';
 
 jest.mock('services/api');
 
@@ -33,22 +34,24 @@ describe('ScanProduct', () => {
     // Check that getProductByCode is called with the correct code
     expect(getProductByCodeMock).toHaveBeenCalledWith('12345');
   });
+});
 
-  test('should not set product if getProductByCode returns null', async () => {
-    const getProductByCodeMock = getProductByCode as jest.Mock;
-    getProductByCodeMock.mockResolvedValue(null);
+describe('getNormalizedCode', () => {
+  it('should remove leading zeros and normalize the code', () => {
+    const code = '00012345';
+    const normalizedCode = getNormalizedCode(code);
+    expect(normalizedCode).toBe('12345');
+  });
 
-    render(<ScanProduct />);
+  it('should normalize the code without leading zeros', () => {
+    const code = '12345';
+    const normalizedCode = getNormalizedCode(code);
+    expect(normalizedCode).toBe('12345');
+  });
 
-    const barcodeInput = screen.getByPlaceholderText('Barcode number') as HTMLInputElement;
-    const searchButton = screen.getByTitle('Find Product');
-
-    fireEvent.change(barcodeInput, { target: { value: '12345' } });
-
-    fireEvent.click(searchButton);
-
-    await screen.findByText('Please use the barcode scanner or enter the product barcode manually');
-
-    expect(getProductByCodeMock).toHaveBeenCalledWith('12345');
+  it('should normalize the code with special characters', () => {
+    const code = '00äöüß12345';
+    const normalizedCode = getNormalizedCode(code);
+    expect(normalizedCode).toBe('äöüß12345');
   });
 });

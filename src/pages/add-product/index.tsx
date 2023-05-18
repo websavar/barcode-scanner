@@ -13,10 +13,12 @@ import Toggle from 'components/controls/Toggle';
 import Input from 'components/controls/Input';
 import Modal from 'components/Modal';
 import BarcodeScanner from 'components/BarcodeScanner';
+import Loader from 'components/Loader/loader';
 
 const AddProduct: React.FC<{}> = ({ }) => {
   const [barcodeInput, setBarcodeInput] = useState<string>('');
   const [isOpen, setIsOpen] = useState<boolean>(false)
+  const [loading, setLoading] = useState(false);
 
   const openModal = () => setIsOpen(true);
   const closeModal = () => setIsOpen(false);
@@ -38,33 +40,53 @@ const AddProduct: React.FC<{}> = ({ }) => {
 
   const onSubmit = async (data: FormValues) => {
     if (!data || !barcodeInput) return;
+    if (!data.code) data.code = parseInt(barcodeInput);
 
+    setLoading(true);
     addProduct(data).then(() => {
-      toast.success('Product added successfully!', {
-        duration: 4000,
-        position: 'top-right',
-        style: {
-          border: '1px solid #e6e6e6',
-          padding: '5px 10px',
-          color: 'gray',
-          fontSize: '13px'
-        },
-      });
-      reset(productDefaultValues);
-      setBarcodeInput('');
+      try {
+        toast.success('Product added successfully!', {
+          duration: 4000,
+          position: 'top-right',
+          style: {
+            border: '1px solid #e6e6e6',
+            padding: '5px 10px',
+            color: 'gray',
+            fontSize: '13px'
+          },
+        });
+        reset(productDefaultValues);
+        setBarcodeInput('');
+      }
+      catch (error) {
+        console.log('error ', error);
+        toast.error('something went wrong!', {
+          duration: 4000,
+          position: 'top-right',
+          style: {
+            border: '1px solid #e6e6e6',
+            padding: '5px 10px',
+            color: 'gray',
+            fontSize: '13px'
+          },
+        });
+      }
+      finally {
+        setLoading(false);
+      }
     });
-
   };
 
   return (
     <Layout>
       <Context.Provider value={{ isOpen, openModal, closeModal }}>
-        <div className='container sm:w-full lg:w-[1024px] xl:w-[1080px] mx-auto items-center input-field p-4 mt-1 mb-5'>
+        {loading && <Loader />}
+        <div className='container sm:w-full lg:w-[1024px] xl:w-[1080px] mx-auto items-center p-4 my-1'>
           <Modal title='Barcode Scanner'>
             <BarcodeScanner onDetected={handleScan} />
           </Modal>
           <Toaster />
-          <h1 className='mb-3 text-lg font-semibold text-gray-700'>Product Data</h1>
+          <h1 className='mb-3 text-lg font-semibold text-gray-700'>Add new product</h1>
           <form
             onSubmit={handleSubmit(onSubmit)}
             className='container mx-auto'
@@ -144,7 +166,7 @@ const AddProduct: React.FC<{}> = ({ }) => {
             </div>
             <div className='flex flex-col items-end'>
               <Button type='submit' classes='w-full sm:w-1/2 lg:w-1/3 mt-4 py-2'
-                disabled={!formState.isDirty}
+                disabled={!formState.isValid}
               >Submit</Button>
               {(formState.isDirty && !formState.isValid) &&
                 <p className='text-sm text-rose-800'>please fill out all mandatory fields with valid value</p>

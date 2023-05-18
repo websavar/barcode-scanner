@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import toast, { Toaster } from 'react-hot-toast';
 import { updateProduct } from 'services/api';
@@ -7,14 +7,15 @@ import { productDefaultValues } from '../../constants';
 import Button from '../controls/Button';
 import Toggle from '../controls/Toggle';
 import Input from '../controls/Input';
+import Loader from 'components/Loader/loader';
 
 const ProductData: React.FC<{ productData: any }> = ({ productData }) => {
+  const [loading, setLoading] = useState(false);
 
   const {
     register,
     control,
     handleSubmit,
-    watch,
     formState,
     reset
   } = useForm<FormValues>({ defaultValues: productDefaultValues });
@@ -27,37 +28,55 @@ const ProductData: React.FC<{ productData: any }> = ({ productData }) => {
   const onSubmit = async (data: FormValues) => {
     if (!data || !formState.isDirty) return;
 
+    setLoading(true);
     updateProduct(data).then(() => {
-      toast.success('Product updated successfully!', {
-        duration: 4000,
-        position: 'top-right',
-        style: {
-          border: '1px solid #e6e6e6',
-          padding: '5px 10px',
-          color: 'gray',
-          fontSize: '13px'
-        },
-      });
-      reset(productDefaultValues);
+      try {
+        toast.success('Product updated successfully!', {
+          duration: 4000,
+          position: 'top-right',
+          style: {
+            border: '1px solid #e6e6e6',
+            padding: '5px 10px',
+            color: 'gray',
+            fontSize: '13px'
+          },
+        });
+        reset(productDefaultValues);
+      } catch (error) {
+        console.log(error);
+        toast.error('something went wrong!', {
+          duration: 4000,
+          position: 'top-right',
+          style: {
+            border: '1px solid #e6e6e6',
+            padding: '5px 10px',
+            color: 'gray',
+            fontSize: '13px'
+          },
+        });
+      } finally {
+        setLoading(false);
+      }
     });
   };
 
   return (
-    <div className='container sm:w-full lg:w-[1024px] xl:w-[1080px] mx-auto items-center input-field p-4 mt-1 mb-5'>
+    <div className='container sm:w-full lg:w-[1024px] xl:w-[1080px] mx-auto items-center p-4 mt-1 mb-3'>
       <Toaster />
-      <h1 className='mb-3 text-lg font-semibold text-gray-700'>Product Data</h1>
+      {loading && <Loader />}
       {productData && (
         <form
           onSubmit={handleSubmit(onSubmit)}
           className='container mx-auto'
         >
+          <h1 className='mb-3 text-lg font-semibold text-gray-700'>Product Data</h1>
           <div className='grid gap-3 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'>
+            <Input name='code' inputValue={productData.code} register={register} />
             <Input name='id' inputValue={productData.id} register={register} />
             <Input name='amount_multiplier' inputValue={productData.amount_multiplier} register={register} />
             <Input name='brand' inputValue={productData.brand} register={register} />
             <Input name='categ_id' inputValue={productData.categ_id} register={register} />
             <Input name='category_id' inputValue={productData.category_id} register={register} />
-            <Input name='code' inputValue={productData.code} register={register} />
             <Input name='description' inputValue={productData.description} register={register} />
             <Controller
               control={control}

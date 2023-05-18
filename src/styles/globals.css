@@ -54,7 +54,7 @@ header a {
 }
 
 header a:not(:last-child) {
-  padding-right: 1rem;
+  padding-right: 2rem;
 }
 
 @media (min-width: 460px){

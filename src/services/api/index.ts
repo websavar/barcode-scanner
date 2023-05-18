@@ -1,6 +1,9 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'http://localhost:3001';
+// const API_BASE_URL = 'http://localhost:3001';
+
+// getting db.json data from online server (https://glitch.com)
+const API_BASE_URL = 'https://product-barcode-scanner.glitch.me';
 
 export const getProductByCode = async (code: string) => {
   const response = await axios.get(`${API_BASE_URL}/products?code=${code}`);

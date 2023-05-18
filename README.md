@@ -37,8 +37,7 @@ The backend API should have the following endpoints:
 - [json-server]: to create a ready-to-use mock server, and uses the provided `db.json` file.
 
 ## Setup and Run
-1. Run `npm run dev` or `yarn dev` to install required dependencies <br />
-  (Run `npm install --legacy-peer-deps` in case of facing error)
+1. Run `npm install --legacy-peer-deps` to install required dependencies <br />
 2. Run `npm run backend` or `yarn backend` to run the json database on http://localhost:3001
-3. Run `npm start` to run the project and Open http://localhost:3000
+3. Run `npm run dev` or `yarn dev` to run the project and Open http://localhost:3000
 4. Run `npm test` to run testing

@@ -1,0 +1,47 @@
+.loading {
+
+  .overlay {
+    background: white;
+    bottom: 0;
+    height: 100%;
+    left: 0;
+    opacity: 0.65;
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 100%;
+    z-index: 998;
+  }
+
+  .row {
+    left: 50%;
+    position: fixed;
+    top: 45%;
+    transform: translate(-50%, -50%);
+    z-index: 999;
+
+    &.loading-spinner {
+      align-items: center;
+      display: flex;
+
+      span {
+        animation: loadingSpin 0.9s linear infinite;
+        border: 0.25em solid transparent;
+        border-color: rgba(darkcyan, 0.25);
+        border-radius: 50%;
+        border-top-color: darkcyan;
+        height: 4rem;
+        margin: .5rem;
+        pointer-events: none;
+        width: 4rem;
+      }
+    }
+  }
+}
+
+@keyframes loadingSpin {
+  100% {
+    transform: rotate(360deg)
+  }
+}
+

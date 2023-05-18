@@ -13,7 +13,10 @@ module.exports = {
     'ts', 'tsx', 'js', 'jsx', 'json', 'node'
   ],
   "transform": {
-    "^.+\\.(t|j)sx?$": "ts-jest",
+    "^.+\\.(t|j)sx?$": ['ts-jest', {
+      babel: true,
+      tsconfig: './tsconfig.test.json',
+    }]
   },
   "moduleNameMapper": {
     "\\.(css|less|scss|sass)$": "identity-obj-proxy",

@@ -16,7 +16,7 @@ const Navbar = () =>
       </Link>
       <div className='flex w-full items-center justify-center '>
         <Link href='/'>Find a product</Link>
-        <Link href='/add-product'>Add new product</Link>
+        <Link href='/add-product'>Add product</Link>
       </div>
     </div>
   </header>;
